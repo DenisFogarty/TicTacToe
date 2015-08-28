@@ -44,17 +44,6 @@ int main(int arcg, char **argv) {
 		grid.fill_grid(col, row, curr_player);
 		grid.draw_grid();
 
-		if(curr_player == 0) {
-			curr_player = 1;
-		}
-		else {
-			curr_player = 0;
-		}
-
-		moves++;
-
-		legal_move = false;
-
 		if(player_won) {
 			printf("%s", "Player ");
 			if(curr_player == 0) {
@@ -66,10 +55,26 @@ int main(int arcg, char **argv) {
 			printf("\n");
 			return 0;
 		}
+
+		if(curr_player == 0) {
+			curr_player = 1;
+		}
+		else {
+			curr_player = 0;
+		}
+
+		moves++;
+
+		legal_move = false;
 	}
 
 	printf("%s", "Draw");
 	printf("\n");
+
+	return 0;
+}
+
+int human_move() {
 
 	return 0;
 }
