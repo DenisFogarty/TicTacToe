@@ -7,13 +7,39 @@
 
 #include "../Headers/draw_grid.h"
 #include "../Headers/play.h"
+#include "../Headers/computer.h"
 
 #include <stdio.h>
 
-int main(int arcg, char **argv) {
-	grid_layout grid;
-	play play_game;
+grid_layout grid;
+play play_game;
+computer play_computer;
 
+int computer_player();
+int two_player();
+
+int main(int arcg, char **argv) {
+	char play_choice[9];
+
+	printf("%s", "Computer or Human");
+	printf("\n");
+	scanf("%s", play_choice);
+
+	if(!(strcmp(play_choice, "Computer"))) {
+		computer_player();
+	}
+	else {
+		two_player();
+	}
+
+	return 0;
+}
+
+int computer_player() {
+	return 0;
+}
+
+int two_player() {
 	int moves = 0;
 	int player_won = 0;
 
@@ -70,11 +96,6 @@ int main(int arcg, char **argv) {
 
 	printf("%s", "Draw");
 	printf("\n");
-
-	return 0;
-}
-
-int human_move() {
 
 	return 0;
 }

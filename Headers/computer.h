@@ -10,9 +10,10 @@
 
 class computer {
 public:
-	computer(int computer_player);
+	computer();
 	virtual ~computer();
 
+	int set_computer_player(int computer_player);
 	int set_move(int x, int y, int player);
 	int check_possible_moves();
 	int set_move();

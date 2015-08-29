@@ -7,7 +7,7 @@
 
 #include "../Headers/computer.h"
 
-computer::computer(int computer_player) {
+computer::computer() {
 	for(int i = 0; i < 3; i++) {
 		for(int j = 0; j < 3; j++) {
 			filled_blocks[j][i] = 0;
@@ -15,14 +15,10 @@ computer::computer(int computer_player) {
 		}
 	}
 
-
 	move_x = 0;
 	move_y = 0;
 
 	move_decided = false;
-
-	comp = computer_player;
-	player = computer_player/2;
 
 	for(int i = 0; i < 3; i++) {
 		for(int j = 0; j < 3; j++) {
@@ -42,14 +38,20 @@ int computer::set_move(int x, int y, int player) {
 	return 0;
 }
 
+int computer::set_computer_player(int computer_player) {
+	comp = computer_player;
+	return 0;
+}
+
 int computer::check_possible_moves() {
-	int i, j;
+	int i, j, k;
 	int row, col;
 	int fillable_spaces;
 	int score;
 
 	i = 0;
 	j = 0;
+	k = 0;
 
 	row = 0;
 	col = 0;
@@ -67,13 +69,13 @@ int computer::check_possible_moves() {
 				//Checking if move is winning move
 				{
 					//Checking all vertical and horizontal lines
-					for(i = 0; i < 3; i++) {
-						if(filled_blocks[i][0] == filled_blocks[i][1] && filled_blocks[i][1] == filled_blocks[i][2] && filled_blocks[i][2] != 0) {
+					for(k = 0; k < 3; k++) {
+						if(filled_blocks[k][0] == filled_blocks[k][1] && filled_blocks[k][1] == filled_blocks[k][2] && filled_blocks[k][2] != 0) {
 							move_x = i;
 							move_y = j;
 							move_decided = true;
 						}
-						if(filled_blocks[0][i] == filled_blocks[1][i] && filled_blocks[1][i] == filled_blocks[2][i] && filled_blocks[2][i] != 0) {
+						if(filled_blocks[0][k] == filled_blocks[1][k] && filled_blocks[1][k] == filled_blocks[2][k] && filled_blocks[2][k] != 0) {
 							move_x = i;
 							move_y = j;
 							move_decided = true;
@@ -101,13 +103,13 @@ int computer::check_possible_moves() {
 						//Checking if move is winning move
 						{
 							//Checking all vertical and horizontal lines
-							for(i = 0; i < 3; i++) {
-								if(filled_blocks[i][0] == filled_blocks[i][1] && filled_blocks[i][1] == filled_blocks[i][2] && filled_blocks[i][2] != 0) {
+							for(k = 0; k < 3; k++) {
+								if(filled_blocks[k][0] == filled_blocks[k][1] && filled_blocks[k][1] == filled_blocks[k][2] && filled_blocks[k][2] != 0) {
 									move_x = i;
 									move_y = j;
 									move_decided = true;
 								}
-								if(filled_blocks[0][i] == filled_blocks[1][i] && filled_blocks[1][i] == filled_blocks[2][i] && filled_blocks[2][i] != 0) {
+								if(filled_blocks[0][k] == filled_blocks[1][k] && filled_blocks[1][k] == filled_blocks[2][k] && filled_blocks[2][k] != 0) {
 									move_x = i;
 									move_y = j;
 									move_decided = true;
@@ -132,114 +134,84 @@ int computer::check_possible_moves() {
 				//Checking for best move to make
 				{
 					if(!move_decided) {
-						for(i = 0; i < 3; i++) {
-							col = i;
+						col = i;
+						row = j;
 
-							for(j = 0; j < 3; j++) {
-								row = j;
-
-								//Checking column if possible to win
-								while((col - 1) >= 0) {
-									//Goes to previous block in column and checks if filled
-									col--;
-									if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
-										fillable_spaces++;
-									}
-								}
-								col = i;
-
-								if(fillable_spaces == 2) {
-									move_score[j][i] = (move_score[j][i]) + 1;
-								}
-								fillable_spaces = 0;
-
-								while((col + 1) <= 2) {
-									//Goes to previous block in column and checks if filled
-									col++;
-									if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
-										fillable_spaces++;
-									}
-								}
-								col = i;
-
-								if(fillable_spaces == 2) {
-									move_score[j][i] = (move_score[j][i]) + 1;
-								}
-								fillable_spaces = 0;
-
-								//Checking row if possible to win
-								while((row - 1) >= 0) {
-									//Goes to previous block in row and checks if filled
-									row--;
-									if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
-										fillable_spaces++;
-									}
-								}
-								row = j;
-
-								if(fillable_spaces == 2) {
-									move_score[j][i] = (move_score[j][i]) + 1;
-								}
-								fillable_spaces = 0;
-
-								while((row + 1) <= 2) {
-									//Goes to previous block in row and checks if filled
-									col++;
-									if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
-										fillable_spaces++;
-									}
-								}
-								row = j;
-
-								if(fillable_spaces == 2) {
-									move_score[j][i] = (move_score[j][i]) + 1;
-								}
-								fillable_spaces = 0;
-
-								//Checking diagonals if possible to win
-								while((row - 1) >= 0 && (col - 1) >= 0) {
-									col--;
-									row--;
-
-									if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
-										fillable_spaces++;
-									}
-								}
-								col = i;
-								row = j;
-
-								if(fillable_spaces == 2) {
-									move_score[j][i] = (move_score[j][i]) + 1;
-								}
-								fillable_spaces = 0;
-
-								while((row + 1) >= 2 && (col + 1) >= 2) {
-									col++;
-									row++;
-
-									if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
-										fillable_spaces++;
-									}
-								}
-								col = i;
-								row = j;
-
-								if(fillable_spaces == 2) {
-									move_score[j][i] = (move_score[j][i]) + 1;
-								}
-								fillable_spaces = 0;
+						//Checking column if possible to win
+						while((col - 1) >= 0) {
+							//Goes to previous block in column and checks if filled
+							col--;
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
 							}
 						}
+						col = i;
 
-						for(i = 0; i < 3; i++) {
-							for(j = 0; j < 3; j++) {
-								if(move_score[j][i] > score) {
-									score = move_score[j][i];
-									move_x = i;
-									move_y = j;
-								}
+						while((col + 1) <= 2) {
+							//Goes to previous block in column and checks if filled
+							col++;
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
 							}
 						}
+						col = i;
+
+						if(fillable_spaces == 2) {
+							move_score[j][i] = (move_score[j][i]) + 1;
+						}
+						fillable_spaces = 0;
+
+						//Checking row if possible to win
+						while((row - 1) >= 0) {
+							//Goes to previous block in row and checks if filled
+							row--;
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
+							}
+						}
+						row = j;
+
+						while((row + 1) <= 2) {
+							//Goes to previous block in row and checks if filled
+							col++;
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
+							}
+						}
+						row = j;
+
+						if(fillable_spaces == 2) {
+							move_score[j][i] = (move_score[j][i]) + 1;
+						}
+						fillable_spaces = 0;
+
+						//Checking diagonals if possible to win
+						while((row - 1) >= 0 && (col - 1) >= 0) {
+							col--;
+							row--;
+
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
+							}
+						}
+						col = i;
+						row = j;
+
+						while((row + 1) >= 2 && (col + 1) >= 2) {
+							col++;
+							row++;
+
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
+							}
+						}
+						col = i;
+						row = j;
+
+						if(fillable_spaces == 2) {
+							move_score[j][i] = (move_score[j][i]) + 1;
+						}
+						fillable_spaces = 0;
 					}
 				}
 			}
@@ -248,6 +220,18 @@ int computer::check_possible_moves() {
 		}
 
 		i++;
+	}
+
+	if(!move_decided) {
+		for(i = 0; i < 3; i++) {
+			for(j = 0; j < 3; j++) {
+				if(move_score[j][i] > score) {
+					score = move_score[j][i];
+					move_x = i;
+					move_y = j;
+				}
+			}
+		}
 	}
 
 	return 0;
