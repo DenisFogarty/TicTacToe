@@ -80,25 +80,25 @@ int computer::check_possible_moves() {
 				{
 					//Checking all vertical and horizontal lines
 					if(filled_blocks[j][0] == filled_blocks[j][1] && filled_blocks[j][1] == filled_blocks[j][2] && filled_blocks[j][2] != 0) {
-						move_x = i;
-						move_y = j;
+						move_x = i + 1;
+						move_y = j + 1;
 						move_decided = true;
 					}
 					if(filled_blocks[0][i] == filled_blocks[1][i] && filled_blocks[1][i] == filled_blocks[2][i] && filled_blocks[2][i] != 0) {
-						move_x = i;
-						move_y = j;
+						move_x = i + 1;
+						move_y = j + 1;
 						move_decided = true;
 					}
 
 					//Checking diagonals
 					if(filled_blocks[0][0] == filled_blocks[1][1] && filled_blocks[1][1] == filled_blocks[2][2] && filled_blocks[2][2] != 0) {
-						move_x = i;
-						move_y = j;
+						move_x = i + 1;
+						move_y = j + 1;
 						move_decided = true;
 					}
 					if(filled_blocks[0][2] == filled_blocks[1][1] && filled_blocks[1][1] == filled_blocks[2][0] && filled_blocks[2][0] != 0) {
-						move_x = i;
-						move_y = j;
+						move_x = i + 1;
+						move_y = j + 1;
 						move_decided = true;
 					}
 				}
@@ -112,25 +112,25 @@ int computer::check_possible_moves() {
 						{
 							//Checking all vertical and horizontal lines
 							if(filled_blocks[j][0] == filled_blocks[j][1] && filled_blocks[j][1] == filled_blocks[j][2] && filled_blocks[j][2] != 0) {
-								move_x = i;
-								move_y = j;
+								move_x = i + 1;
+								move_y = j + 1;
 								move_decided = true;
 							}
 							if(filled_blocks[0][i] == filled_blocks[1][i] && filled_blocks[1][i] == filled_blocks[2][i] && filled_blocks[2][i] != 0) {
-								move_x = i;
-								move_y = j;
+								move_x = i + 1;
+								move_y = j + 1;
 								move_decided = true;
 							}
 
 							//Checking diagonals
 							if(filled_blocks[0][0] == filled_blocks[1][1] && filled_blocks[1][1] == filled_blocks[2][2] && filled_blocks[2][2] != 0) {
-								move_x = i;
-								move_y = j;
+								move_x = i + 1;
+								move_y = j + 1;
 								move_decided = true;
 							}
 							if(filled_blocks[0][2] == filled_blocks[1][1] && filled_blocks[1][1] == filled_blocks[2][0] && filled_blocks[2][0] != 0) {
-								move_x = i;
-								move_y = j;
+								move_x = i + 1;
+								move_y = j + 1;
 								move_decided = true;
 							}
 						}
@@ -204,7 +204,7 @@ int computer::check_possible_moves() {
 						col = i;
 						row = j;
 
-						while((row + 1) >= 2 && (col + 1) >= 2) {
+						while((row + 1) <= 2 && (col + 1) <= 2) {
 							col++;
 							row++;
 
@@ -227,6 +227,7 @@ int computer::check_possible_moves() {
 		}
 
 		i++;
+		j = 0;
 	}
 
 	if(!move_decided) {

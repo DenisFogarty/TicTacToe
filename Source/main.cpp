@@ -92,6 +92,7 @@ int computer_player() {
 			legal_move = false;
 		}
 
+		//Calls the computer AI
 		else {
 			play_computer.check_possible_moves();
 			move_x = play_computer.get_x();
@@ -103,7 +104,22 @@ int computer_player() {
 
 			player_won = play_game.check_grid();
 			play_computer.set_move(move_x, move_y, curr_player);
+
+			if(player_won) {
+				printf("%s", "Player ");
+				if(curr_player == 0) {
+					printf("%s", "1 wins");
+				}
+				else {
+					printf("%s", "2 wins");
+				}
+				printf("\n");
+				return 0;
+			}
+
 			curr_player = 0;
+
+			moves++;
 		}
 	}
 
