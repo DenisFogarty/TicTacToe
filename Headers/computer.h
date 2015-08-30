@@ -16,7 +16,6 @@ public:
 	int set_computer_player(int computer_player);
 	int set_move(int x, int y, int player);
 	int check_possible_moves();
-	int set_move();
 	int get_x();
 	int get_y();
 
