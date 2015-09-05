@@ -272,11 +272,6 @@ int computer::check_possible_moves() {
 
 	move_decided = false;
 
-	printf("%d", move_x);
-	printf("\n");
-	printf("%d", move_y);
-	printf("\n");
-
 	return 0;
 }
 

@@ -109,6 +109,12 @@ int computer_player() {
 			move_x = play_computer.get_x();
 			move_y = play_computer.get_y();
 
+			printf("%s", "Row: ");
+			printf("%d", move_y);
+			printf("%s", "\nCol: ");
+			printf("%d", move_x);
+			printf("%s", "\n");
+
 			play_game.play_piece(move_x, move_y, curr_player);
 			grid.fill_grid(move_x, move_y, curr_player);
 			grid.draw_grid();

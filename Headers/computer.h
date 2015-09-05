@@ -8,8 +8,6 @@
 #ifndef COMPUTER_H_
 #define COMPUTER_H_
 
-#include <stdio.h>
-
 class computer {
 public:
 	computer();
