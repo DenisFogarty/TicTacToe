@@ -219,6 +219,34 @@ int computer::check_possible_moves() {
 							move_score[j][i] = (move_score[j][i]) + 1;
 						}
 						fillable_spaces = 0;
+
+						//Checking other diagonal
+						while((row - 1) >= 0 && (col + 1) <= 2) {
+							col++;
+							row--;
+
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
+							}
+						}
+						col = i;
+						row = j;
+
+						while((row + 1) <= 2 && (col - 1) >= 0) {
+							col--;
+							row++;
+
+							if(filled_blocks[row][col] == 0 || filled_blocks[row][col] == comp) {
+								fillable_spaces++;
+							}
+						}
+						col = i;
+						row = j;
+
+						if(fillable_spaces == 2) {
+							move_score[j][i] = (move_score[j][i]) + 1;
+						}
+						fillable_spaces = 0;
 					}
 				}
 			}
@@ -252,6 +280,17 @@ int computer::get_x() {
 
 int computer::get_y() {
 	return move_y;
+}
+
+int computer::reset_play() {
+    for(int i = 0; i < 3; i++) {
+		for(int j = 0; j < 3; j++) {
+			filled_blocks[j][i] = 0;
+			move_score[j][i] = 0;
+		}
+	}
+
+	return 0;
 }
 
 computer::~computer() {

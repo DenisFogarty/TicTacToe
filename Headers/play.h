@@ -16,6 +16,7 @@ public:
 	int play_piece(int x_pos, int y_pos, int player);
 	int check_legal(int x_pos, int y_pos);
 	int check_grid();
+	int reset_play();
 
 private:
 	int filled_blocks[3][3];

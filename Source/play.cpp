@@ -59,6 +59,16 @@ int play::check_grid() {
 	return 0;
 }
 
+int play::reset_play() {
+    for(int i = 0; i < 3; i++) {
+		for(int j = 0; j < 3; j++) {
+			filled_blocks[j][i] = 0;
+		}
+	}
+
+	return 0;
+}
+
 play::~play() {
 
 }

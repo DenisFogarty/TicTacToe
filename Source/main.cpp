@@ -20,23 +20,32 @@ int two_player();
 
 int main(int arcg, char **argv) {
 	char play_choice[9];
+	char replay[4] = {'y', 'e', 's', '\0'};
 
-	printf("%s", "Computer or Human");
-	printf("\n");
-	scanf("%s", play_choice);
+    while(!(strcmp(replay, "yes")) || !(strcmp(replay, "Yes"))) {
+        printf("%s", "Computer or Human");
+        printf("\n");
+        scanf("%s", play_choice);
 
-	if(!(strcmp(play_choice, "Computer"))) {
-		computer_player();
-	}
-	else {
-		two_player();
-	}
+        grid.clear_grid();
+        play_computer.reset_play();
+        play_game.reset_play();
+
+        if(!(strcmp(play_choice, "Computer"))) {
+            computer_player();
+        }
+        else {
+            two_player();
+        }
+
+        printf("%s", "Replay: ");
+        scanf("%s", replay);
+    }
 
 	return 0;
 }
 
 int computer_player() {
-	int moves = 0;
 	int player_won = 0;
 
 	bool legal_move = false;
@@ -51,6 +60,8 @@ int computer_player() {
 	grid.draw_grid();
 
 	play_computer.set_computer_player(2);
+
+    int moves = 0;
 
 	while(moves < 9) {
 		if(curr_player == 0) {
@@ -126,13 +137,10 @@ int computer_player() {
 	printf("%s", "Draw");
 	printf("\n");
 
-	return 0;
-
-	return 0;
+    return 0;
 }
 
 int two_player() {
-	int moves = 0;
 	int player_won = 0;
 
 	bool legal_move = false;
@@ -142,6 +150,8 @@ int two_player() {
 	int curr_player = 0;
 
 	grid.draw_grid();
+
+    int moves = 0;
 
 	while(moves < 9) {
 		while(!legal_move) {

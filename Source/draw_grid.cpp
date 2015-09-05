@@ -86,6 +86,30 @@ int grid_layout::draw_grid() {
 	return 0;
 }
 
+int grid_layout::clear_grid() {
+    strcpy(row_1, "       |       |       \0");
+	strcpy(row_2, "-----------------------\0");
+
+	int row_offset = 0;
+	int i, j;
+
+	//Drawing the board
+	for(i = 0; i < 3; i++) {
+
+		for(j = row_offset; j < row_offset + 5; j++) {
+			strcpy(full_grid[j], row_1);
+		}
+
+		if(i < 2) {
+			strcpy(full_grid[j], row_2);
+		}
+
+		row_offset += 6;
+	}
+
+	return 0;
+}
+
 grid_layout::~grid_layout() {
 
 }

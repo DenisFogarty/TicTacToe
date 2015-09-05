@@ -29,6 +29,7 @@ public:
 
 	int fill_grid(int x_pos, int y_pos, int player);
 	int draw_grid();
+	int clear_grid();
 
 };
 

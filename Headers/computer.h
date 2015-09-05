@@ -18,6 +18,7 @@ public:
 	int check_possible_moves();
 	int get_x();
 	int get_y();
+	int reset_play();
 
 private:
 	int filled_blocks[3][3];
