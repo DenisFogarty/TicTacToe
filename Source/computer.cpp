@@ -261,7 +261,7 @@ int computer::check_possible_moves() {
 	if(!move_decided) {
 		for(i = 0; i < 3; i++) {
 			for(j = 0; j < 3; j++) {
-				if(move_score[j][i] > score) {
+				if(move_score[j][i] > score && filled_blocks[j][i] == 0) {
 					score = move_score[j][i];
 					move_x = i + 1;
 					move_y = j + 1;
@@ -271,6 +271,12 @@ int computer::check_possible_moves() {
 	}
 
 	move_decided = false;
+
+	printf("%d", move_x);
+	printf("\n");
+	printf("%d", move_y);
+	printf("\n");
+
 	return 0;
 }
 
