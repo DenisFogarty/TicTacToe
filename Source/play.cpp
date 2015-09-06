@@ -27,7 +27,7 @@ int play::play_piece(int x_pos, int y_pos, int player) {
 }
 
 int play::check_legal(int x_pos, int y_pos) {
-	if(filled_blocks[y_pos - 1][x_pos - 1] != 0) {
+	if(filled_blocks[y_pos - 1][x_pos - 1] != 0 || x_pos > 3 || x_pos < 1 || y_pos > 3 || y_pos < 1) {
 		return 0;
 	}
 	else {
